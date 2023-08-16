@@ -2,9 +2,11 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
+#print(sys.path)
 import gym
 import numpy as np
+
 from envs.simpy_env.CyberWithChannelEnvSB_123 import CyberEnv
 from envs.openDSSenvSB_DiscreteSpace import openDSSenv
 from stable_baselines3 import PPO
@@ -37,11 +39,12 @@ cenv = CyberEnv(provided_graph=G, channelModel=False,envDebug=False, R2_qlimit=1
 # env = make_vec_env(env_id, n_envs=num_cpu, seed=0, vec_env_cls=SubprocVecEnv)
 
 # Create the Physical Network
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 dss.run_command(dss_master_file_dir)
 circuit = dss.Circuit
+
 critical_loads_bus = ['58','59','99','100','88','93','94','78','48','50', '111','114', '37','39']
 #critical_loads_bus = ['57','60']
 capacitor_banks =['C83', 'C88a', 'C90b','C92c']

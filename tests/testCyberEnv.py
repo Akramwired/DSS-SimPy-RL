@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from envs.simpy_env.CyberEnv import CyberEnv
 import random
 import networkx as nx

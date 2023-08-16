@@ -647,7 +647,7 @@ class CyberEnv(BaseEnv):
 
         else:
             #self.deviceCount = 16
-            self.deviceCount = 18
+            self.deviceCount = 18 #device count for cybernetwork2 is 18 but for my environment it is 4
             self.G = provided_graph
             self.reinitialize_complex_network(self.G)
             """ self.observation_space = spaces.Box(low=0, high=1000000.0, shape=(self.deviceCount + len(self.channels),), dtype=np.float32)

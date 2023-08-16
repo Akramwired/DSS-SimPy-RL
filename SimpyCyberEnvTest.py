@@ -135,6 +135,6 @@ def testAgent(env,model):
 
 if __name__ == "__main__":
     G = create_network2()
-    env = create_env_run(desktop_path,graph=G,channelModel=False,envDebug=False, queueLimit=130, channelBW= 2500,withThreat=False)
+    env = create_env_run(graph=G,channelModel=False,envDebug=False, queueLimit=130, channelBW= 2500,withThreat=False)
     model = trainAgent(env)
     testAgent(env,model)

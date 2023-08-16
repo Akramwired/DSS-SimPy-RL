@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from distutils.dir_util import create_tree
 from envs.openDSSenv import openDSSenv
 import opendssdirect as dss
@@ -17,11 +17,11 @@ import torch
 
 der = True
 
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 if der:
-    dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+    dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
     dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 dss.run_command(dss_master_file_dir)
@@ -51,11 +51,11 @@ for c in range(1,5,1): # select contingency
     for load_ub in range(11,12,1):
         der = True
 
-        dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+        dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
         dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
         if der:
-            dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+            dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
             dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
         
         dss.run_command(dss_master_file_dir)

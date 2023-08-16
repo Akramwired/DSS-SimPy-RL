@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from envs.openDSSenv import openDSSenv
 import opendssdirect as dss
 import random
@@ -12,7 +12,7 @@ from agents.dqn import *
 from collections import namedtuple, deque 
 import torch
 
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 dss.run_command(dss_master_file_dir)
@@ -43,7 +43,7 @@ scores = [] # list containing score from each episode
 scores_window = deque(maxlen=100) # last 100 scores
 eps = eps_start
 
-agent = Agent(state_size=env.observation_spaces.shape[0],action_size=len(switch_names) - 1,seed=0)
+agent = Agent(state_size=env.observation_space.shape[0],action_size=len(switch_names) - 1,seed=0)
 
 for i_episode in range(1, n_episodes+1):
     print ('EPISODE: {} =======>'.format(i_episode))
@@ -55,9 +55,9 @@ for i_episode in range(1, n_episodes+1):
         action = agent.act(state,eps)
         next_state,reward,done,info,_ = env.step(switch_names[action+1], result={})
         print('State : {0}, Next-State : {1}, Reward : {2}, Done : {3}, Info :{4}'.format(state, next_state, reward, done, info))
-        agent.step(state,action,reward[0],np.array(next_state),done)
+        agent.step(state,action,reward,np.array(next_state),done)
         state = np.array(next_state)
-        score += reward[0]
+        score += reward
         if done:
             print('Episode length '+str(t+1))
             break

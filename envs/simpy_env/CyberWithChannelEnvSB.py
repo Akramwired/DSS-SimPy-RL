@@ -469,7 +469,7 @@ class CyberEnv(BaseEnv):
             self.max_episode_len = 50
 
         else:
-            self.deviceCount = 16
+            self.deviceCount = 16 #It was 16 initially
             self.G = provided_graph
             self.reinitialize_complex_network(self.G)
             """ self.observation_space = spaces.Box(low=0, high=1000000.0, shape=(self.deviceCount + len(self.channels),), dtype=np.float32)

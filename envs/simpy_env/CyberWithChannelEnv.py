@@ -591,7 +591,7 @@ class CyberEnv(BaseEnv):
             self.reinitialize_network()
         else:
             self.reinitialize_complex_network(self.G)
-        SimMan.runSimulation(100)
+        SimMan.runSimulation(5) # earlier it was 100
         drop_rates = []
         for router in self.routers:
             drop_rates.append(router.packets_drop)

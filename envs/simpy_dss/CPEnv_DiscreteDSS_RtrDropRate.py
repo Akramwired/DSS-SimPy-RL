@@ -44,11 +44,11 @@ from gym.utils import seeding
 # Based on the succesful packet transmission, the phy side action will be executed. (CYB===>PHY)
 def CyberPhysicalMapping():
     # read the bus file
-    fp = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\Buses_Pyomo.csv'
+    fp = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\Buses_Pyomo.csv'
     bi = pd.read_csv(fp)
     bus_info = bi.set_index('Buses')['Zone'].to_dict()
 
-    fp2 = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\Lines_data_Pyomo.csv'
+    fp2 = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\Lines_data_Pyomo.csv'
     li = pd.read_csv(fp2)
     line_info = li.set_index('Lines').T.to_dict('list')
 

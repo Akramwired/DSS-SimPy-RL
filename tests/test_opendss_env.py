@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from envs.openDSSenv import openDSSenv
 import opendssdirect as dss
 import random
@@ -11,11 +11,11 @@ import random
 
 der = True
 
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 if der:
-    dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+    dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
     dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 dss.run_command(dss_master_file_dir)
@@ -61,7 +61,7 @@ for i in range(episodes):
         #print('Switch closing '+action)
         next_state, reward, done,info,_ = env.step(action, result={})
         state = next_state
-        episodic_reward += reward[0]
+        episodic_reward += reward
     print('Episode Length : '+str(ctr))
     
 

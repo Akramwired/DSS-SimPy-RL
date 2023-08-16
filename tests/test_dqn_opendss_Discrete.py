@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\\DSS-SimPy-RL')
 from envs.openDSSenvSB_DiscreteSpace import openDSSenv
 import opendssdirect as dss
 import random
@@ -13,7 +13,7 @@ from collections import namedtuple, deque
 import torch
 import statistics
 
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 dss.run_command(dss_master_file_dir)
@@ -49,13 +49,13 @@ for i_episode in range(1, 100):
         ctr+=1
         #print(switch_names[0:])
         action = random.choice(switch_names[0:])
-        next_state,reward,done,info,_ = env.step(action, result={})
+        next_state,reward,done,info = env.step(action, result={})
         #print('State : {0}, Next-State : {1}, Reward : {2}, Done : {3}, Info :{4}'.format(state, next_state, reward, done, info))
         if action in switch_selected:
             continue
         else:
             switch_selected.append(action)
-        next_state, reward, done,info,_ = env.step(action, result={})
+        next_state, reward, done,info = env.step(action, result={})
     if ctr < max_t:
         success+=1
         agg_episode_len.append(ctr)
@@ -63,7 +63,7 @@ for i_episode in range(1, 100):
 print('Case: Contingency: {0}, avg episode len: {1}, Success rate: {2}'.format(env.contingency, statistics.mean(agg_episode_len), success/100))
 
 
-n_episodes = 5000
+n_episodes = 1000 #Initially it was 5000
 
 
 eps_start = 1.0
@@ -82,7 +82,7 @@ for i_episode in range(1, n_episodes+1):
     score = 0
     for t in range(max_t):
         action = agent.act(state,eps)
-        next_state,reward,done,info,_ = env.step(action, result={})
+        next_state,reward,done,info = env.step(action, result={})
         #print('State : {0}, Next-State : {1}, Reward : {2}, Done : {3}, Info :{4}'.format(state, next_state, reward, done, info))
         #print('Reward : {0}'.format(reward))
         agent.step(state,action,reward,next_state,done)
@@ -130,7 +130,7 @@ for k in range(testing):
                 continue
             else:
                 switch_selected.append(action)
-            obs, reward, done, info,_ = env.step(action,result={})
+            obs, reward, done, info = env.step(action,result={})
             #print('obs {0} reward {1} done {2} '.format(obs,reward,done))
             episodic_reward+=reward
             episode_len+=1

@@ -71,6 +71,26 @@ def create_network2():
     G.add_edge('PS',0, weight=0.0)
     return G
 
+def create_network3():
+    A = np.array([[0, 1, 1, 0],
+                  [1, 0, 0, 1],
+                  [1, 0, 0, 1],
+                  [0, 1, 1, 0]])
+
+
+    G = nx.from_numpy_matrix(A)
+    nx.set_node_attributes(G, 'router', 'nodetype')
+    G = nx.from_numpy_matrix(A)
+    nx.set_node_attributes(G, 'router', 'nodetype')
+    G.add_node('PS', nodetype='sink')
+    G.add_edge(0, 'PS', weight=0.0)
+    G.add_node('PG1', nodetype='sender')
+    G.add_edge(1, 'PG1', weight=0.0)
+    G.add_node('PG2', nodetype='sender')
+    G.add_edge(2, 'PG2', weight=0.0)
+
+    return G
+
 def draw_cyber_network(G):
     """This function draw the cyber network
 

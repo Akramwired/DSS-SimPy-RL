@@ -3,7 +3,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from envs.openDSSenvSB import openDSSenv
 import opendssdirect as dss
 import random
@@ -18,7 +18,7 @@ import torch
 
 
 ppo=False
-dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
 dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
 
@@ -37,8 +37,8 @@ for k,sw in enumerate(switches):
 
 line_faults = ['L55', 'L58', 'L77','L68','L45', 'L101','L41']
 
-episodes = 50
-max_t = 100
+episodes = 10 # Initially it was 50
+max_t = 25 # Initially it was 100
 ders = ['35','48','64','78','95','108']
 env = openDSSenv(_dss = dss, _critical_loads=critical_loads_bus, _line_faults =line_faults, _switch_names = switch_names, _capacitor_banks = capacitor_banks,load_ub=11,_ders=ders)
 agg_episode_len = []
@@ -101,13 +101,13 @@ else:
     # model = DQN.load("dqn_lunar", env=env, print_system_info=True)
     model = PPO.load("a2c_opendss", env=env)
 
-testing = 5
+testing = 2 #Initally it was 5
 
 for k in range(testing): 
     print('Test '+str(k+1))
     acc_len = 0
-    test_episode = 50
-    max_t=100
+    test_episode = 10 # Initially it was 50
+    max_t=25 # Initially it was 50
     acc_reward = 0
     for i in range(test_episode):
         state = obs = env.reset()

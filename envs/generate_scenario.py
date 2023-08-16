@@ -9,11 +9,11 @@ Created on Tue Jun 07 19:42:05 2022
 
 # read the open-dss 123 bus scenario
 import sys
-sys.path.append('../')
+sys.path.append('..\\')
 import os
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.append(desktop_path+'\ARM_IRL')
+sys.path.append(desktop_path+'\\DSS-SimPy-RL')
 import opendssdirect as dss
 import os
 import math
@@ -576,7 +576,7 @@ if __name__ == "__main__":
     global bus_number
 
     # Main code  
-    dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+    dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
     dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
     dss.run_command(dss_master_file_dir)

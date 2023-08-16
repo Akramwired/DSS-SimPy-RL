@@ -10,7 +10,7 @@ import sys
 import os
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 from queue import Queue
 from random import random
 import opendssdirect as dss
@@ -169,7 +169,7 @@ class openDSSenv(gym.Env):
         c) based on a certain frequency a contingency is caused. Either single, double or mix
         d) the environment moves to the next state based on the contingency which acts as the initial state of the episode
         """
-        dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+        dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
         dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
         dss.run_command(dss_master_file_dir)

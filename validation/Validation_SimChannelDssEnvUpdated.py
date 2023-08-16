@@ -12,7 +12,7 @@ import os
 import sys
 directory = os.path.dirname(os.path.realpath(__file__))
 desktop_path = os.path.dirname(os.path.dirname(directory))
-sys.path.insert(0,desktop_path+'\ARM_IRL')
+sys.path.insert(0,desktop_path+'\DSS-SimPy-RL')
 import gym
 from envs.openDSSenv import openDSSenv
 from envs.simpy_env.CyberWithChannelEnvSB_123 import CyberEnv
@@ -43,11 +43,11 @@ import scipy.io
 # Based on the succesful packet transmission, the phy side action will be executed. (CYB===>PHY)
 def CyberPhysicalMapping():
     # read the bus file
-    fp = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\Buses_Pyomo.csv'
+    fp = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\Buses_Pyomo.csv'
     bi = pd.read_csv(fp)
     bus_info = bi.set_index('Buses')['Zone'].to_dict()
 
-    fp2 = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\Lines_data_Pyomo.csv'
+    fp2 = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\Lines_data_Pyomo.csv'
     li = pd.read_csv(fp2)
     line_info = li.set_index('Lines').T.to_dict('list')
 
@@ -173,11 +173,11 @@ if __name__ == '__main__':
     
     der = True
     # Create the Physical Network
-    dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_Simple\\'
+    dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_Simple\\'
     dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
     if der:
-        dss_data_dir = desktop_path+'\\ARM_IRL\\cases\\123Bus_SimpleMod\\'
+        dss_data_dir = desktop_path+'\\DSS-SimPy-RL\\cases\\123Bus_SimpleMod\\'
         dss_master_file_dir = 'Redirect ' + dss_data_dir + 'IEEE123Master.dss'
 
     dss.run_command(dss_master_file_dir)
